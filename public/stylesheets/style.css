@@ -1,0 +1,30 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1,h2 {
+  margin: 0;
+  padding: 5px;
+}
+
+.row {
+  display: block;
+}
+
+.col {
+  display: inline;
+  margin: auto;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.header {
+  background-color: #009999;
+  color: white;
+}
