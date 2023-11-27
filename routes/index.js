@@ -6,35 +6,49 @@ function setDB(dbConnection) {
   db = dbConnection;
 }
 
-function printGrade(grade) {
-  wholePart = Math.floor(grade);
-  decimalPart = Math.ceil((grade - wholePart) * 10);
-  console.log(wholePart, decimalPart);
-  if (decimalPart < 3)
-    return wholePart;
-  if (decimalPart < 7)
-    return String(wholePart) + '-';
-  else
-    return String(wholePart + 1) + '+';
-}
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.selectAllRows((rows) => {
-    console.log(rows);
-    db.insertRow('Lorem Ipsum 10', () => {
-      db.insertRow('Lorem Ipsum 11', () => {
-        db.insertRow('Lorem Ipsum 12', () => {
-          db.selectAllRows((rows) => {
-            console.log(rows);
-          });
-        });
-      });
+  db.getStudents( (students) => {
+    console.log(students);
+    db.getTeachers( (teachers) => {
+      console.log(teachers);
+      res.render('index', {'students': students, 'teachers': teachers});
     });
   });
-  user = {'name': 'Troy Bolton', 'class': '10b'};
-  subjects = [{'name': 'Mathe', 'average': printGrade(2.3), 'grades': [{'title': 'Erste Klassenarbeit', 'grade': printGrade(2.3)}]}, {'name': 'Englisch', 'average': printGrade(3.0), 'grades': [{'title': 'Erste Klassenarbeit', 'grade': printGrade(3.0)}]}];
-  res.render('index', {'user': user, 'subjects': subjects});
+});
+
+/* GET admin panel. */
+router.get('/admin', function(req, res, next) {
+  db.selectAllRows('User', (users) => {
+    console.log(users);
+    db.selectAllRows('Class', (classes) => {
+      console.log(classes);
+      res.render('admin', {'users': users, 'classes': classes});
+    });
+  });
+});
+
+/* GET admin settings for user. */
+router.get('/user', function(req, res, next) {
+  db.getUser(req.query.id, (user) => {
+    return 'TODO';
+  });
+});
+
+/* GET student page. */
+router.get('/student', function(req, res, next) {
+  db.getUser(req.query.id, (user) => {
+    console.log(user);
+    db.getStudentGrades(req.query.id, (subjects) => {
+      console.log(subjects);
+      res.render('student', {'user': user, 'subjects': subjects});
+    });
+  });
+});
+
+/* GET teacher page. */
+router.get('/teacher', function(req, res, next) {
+  res.render('teacher');
 });
 
 module.exports = { router, setDB };

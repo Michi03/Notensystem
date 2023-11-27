@@ -1,46 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Notenübersicht - <%= user.name %></title>
+    <title>Notenübersicht</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <script src='/javascripts/script.js'></script>
     <div class='header-container'>
       <%- include('./header'); %>
-      <h1><%= user.name %></h1>
-      <h2>Klasse <%= user.class %></h2>
     </div>
     <div class='content'>
-      <div class='nav-tabs row'>
-        <% subjects.forEach(function(subject) { %>
-          <button class='nav-tab' onclick='toggle(<%= subject.name %>)'>
-            <%= subject.name %>
-          </button>
-          <% }); %>
+      <div class='nav-tabs col'>
+        <a href='/admin'>Admin Oberfläche</a>
       </div>
-      <% subjects.forEach(function(subject) { %>
-        <div class='tab-content' hidden id='<%= subject.name %>'>
-          <div class='row'>
-            <div class='col'>
-              <u>Durchschnittsnote:</u>
-            </div>
-            <div class='col'>
-              <u><%= subject.average %></u>
-            </div>
-          </div>
-          <% subject.grades.forEach(function(grade) { %>
-            <div class='row'>
-              <div class='col'>
-                <%= grade.title %>
-              </div>
-              <div class='col'>
-                <%= grade.grade %>
-              </div>
-            </div>
-          <% }); %>
+      <div class='nav-tabs col'>
+        <div>
+          <h3>Schüler:innen</h3>
+          <ul>
+            <% students.forEach(function(student) { %>
+              <li>
+                <a href='/student?id=<%= student.id %>'><%= student.surname %>, <%= student.firstname %></a>
+              </li>
+            <% }); %>
+          </ul>
         </div>
-      <% }); %>
+        <div>
+          <h3>Lehrer:innen</h3>
+          <ul>
+            <% teachers.forEach(function(teacher) { %>
+              <li>
+                <a href='/teacher?id=<%= teacher.id %>'><%= teacher.surname %>, <%= teacher.firstname %></a>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>
