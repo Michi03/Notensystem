@@ -1,5 +1,6 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const util = require('../lib/util');
 var db;
 
 function setDB(dbConnection) {
@@ -37,10 +38,12 @@ router.get('/user', function(req, res, next) {
 
 /* GET student page. */
 router.get('/student', function(req, res, next) {
-  db.getUser(req.query.id, (user) => {
+  db.getStudent(req.query.id, (user) => {
     console.log(user);
     db.getStudentGrades(req.query.id, (subjects) => {
-      console.log(subjects);
+      console.log(JSON.stringify(subjects));
+      for (let i = 0; i < subjects.length; i++)
+        subjects[i]['average'] = util.printGrade(util.computeAverageGrade(subjects[i]['grades']));
       res.render('student', {'user': user, 'subjects': subjects});
     });
   });
