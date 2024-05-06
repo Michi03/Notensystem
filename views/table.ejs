@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Datenbank Table - <%= table %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <script src='/javascripts/script.js'></script>
+    <div class='header-container'>
+      <%- include('./header'); %>
+    </div>
+    <div class='content'>
+      <div>
+        <h3>Inhalt</h3>
+        <table>
+          <tr>
+            <% keys.forEach(function(key) { %>
+              <th>
+                <%= key %>
+              </th>
+            <% }) %>
+          </tr>
+          <% rows.forEach(function(row) { %>
+            <tr>
+              <% keys.forEach(function(key) { %>
+                <td>
+                  <%= row[key] %>
+                </td>
+              <% }) %>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -15,7 +15,22 @@ h1,h2 {
 h3 {
 
 }
+td {
 
+  border: 1px solid #dddddd;
+  padding: 7.5px;
+}
+
+th {
+
+  border: 1px solid #dddddd;
+  padding: 7.5px;
+
+  font-weight: bold;
+
+  background-color: black;
+  color: white;
+}
 .row {
   display: block;
 }

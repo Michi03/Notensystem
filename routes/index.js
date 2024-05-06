@@ -18,6 +18,14 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* GET DB table. */
+router.get('/users', function(req, res, next) {
+  db.selectAllRows('User', (rows) => {
+    console.log(rows);
+    res.render('table', {'table': 'User', 'keys': Object.keys(rows[0]), 'rows': rows});
+  });
+});
+
 /* GET admin panel. */
 router.get('/admin', function(req, res, next) {
   db.selectAllRows('User', (users) => {
