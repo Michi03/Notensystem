@@ -10,70 +10,7 @@
       <%- include('./header'); %>
     </div>
     <div class='content'>
-      <div>
-        <table>
-          <thead>
-            <th>ID</th>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Email</th>
-            <th>Lehrperson</th>
-            <th>Admin</th>
-            <th>Klasse</th>
-          </thead>
-          <tbody>
-            <% users.forEach(function(user) { %>
-              <tr><%= user.id %></tr>
-              <tr><%= user.firstname %></tr>
-              <tr><%= user.surname %></tr>
-              <tr><%= user.email %></tr>
-              <tr><%= user.isTeacher %></tr>
-              <tr><%= user.isAdmin %></tr>
-              <tr><%= user.classBelonging %></tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <form action='/new/user' id='newUser'>
-          <h3><u>User anlegen</u></h3>
-          <table class='no-border'>
-            <thead>
-              <th>Vorname</th>
-              <th>Nachname</th>
-              <th>Email</th>
-              <th>Lehrperson</th>
-              <th>Admin</th>
-              <th>Klasse</th>
-            </thead>
-            <tbody>
-              <tr>
-                <input type='text' id='firstname' name='firstname'>
-              </tr>
-              <tr>
-                <input type='text' id='surname' name='surname'>
-              </tr>
-              <tr>
-                <input type='email' id='email' name='email'>
-              </tr>
-              <tr>
-                <input type='checkbox' id='isTeacher' name='isTeacher'>
-              </tr>
-              <tr>
-                <input type='checkbox' id='isAdmin' name='isAdmin'>
-              </tr>
-              <tr>
-                <select id='class' name='class' form='newUser'>
-                  <% classes.forEach(function(schoolClass) { %>
-                    <option value='<%= schoolClass.id %>'><%= schoolClass.year %><%= schoolClass.kind %></option>
-                  <% }); %>
-                </select>
-              </tr>
-            </tbody>
-          </table>
-          <input type='submit' id='submit' value='Anlegen'>
-        </form>
-      </div>
+      <h1>## TODO ##</h1>
     </div>
   </body>
 </html>
