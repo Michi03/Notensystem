@@ -5,15 +5,11 @@ var db;
 function setDB(dbConnection) {
   db = dbConnection;
 }
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  return 'TODO';
-});
-
 /* POST create new user. */
 router.post('/user', function(req, res, next) {
-  return 'TODO';
+  console.log(req.body);
+  db.insertRow('Users', {'firstname': req.body["Vorname"]}, () => {console.log("callback")});
+  res.render('OKAY');
 });
 
 /* POST create new school class. */

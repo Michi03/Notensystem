@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Notenübersicht - Admin</title>
+    <title>Adminübersicht</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
@@ -10,7 +10,79 @@
       <%- include('./header'); %>
     </div>
     <div class='content'>
-      <h1>## TODO ##</h1>
+      <div>
+        <h3>Adminübersicht</h3>
+        <table>
+          <tr>
+              <th>
+                ID
+              </th>
+              <th>
+                Vorname
+              </th>
+              <th>
+              Nachname
+              </th>
+              <th>
+                Email
+              </th>
+              <th>
+                Lehrer:in
+              </th>
+              <th>
+                Admin
+              </th>
+              <th>
+                Klasse
+              </th>
+          </tr>
+          <% rows.forEach(function(row) { %>
+            <tr>
+              <% keys.forEach(function(key) { %>
+                <td>
+                  <%= row[key] %>
+                </td>
+              <% }) %>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+        <h3>Neuer Benutzer</h3>
+        <form action="/new/user" method="post">
+          <table>
+            <tr>
+              <td>
+                <label for="firstname">Vorname</label>
+              </td>
+              <td>
+                <label for="lastname">Nachname</label>
+              </td>
+              <td>
+                <label for="teacher">Lehrer</label>
+              </td>
+              <td>
+                <label for="admin">Admin</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input type="textinput" id="firstname" name="Vorname">
+              </td>
+              <td>
+                <input type="textinput" id="lastname" name="Nachname">
+              </td>
+              <td>
+                <input type="checkbox" id="teacher" name="teacher">
+              </td>
+              <td>
+                <input type="checkbox" id="admin" name="admin">
+              </td>
+            </tr>
+          </table>
+          <input type="submit" value="Hinzufügen">
+        </form>
+      </div>
+      </div>
     </div>
   </body>
 </html>

@@ -22,8 +22,13 @@ router.get('/users', function(req, res, next) {
 
 /* GET admin panel. */
 router.get('/admin', function(req, res, next) {
-  res.render('admin', {});
+  db.selectAllRows('Users', (rows) => {
+    console.log(rows);
+    res.render('admin', {'admin': 'Users', 'keys': Object.keys(rows[0]), 'rows': rows});
+  });
 });
+
+
 
 /* GET admin settings for user. */
 // router.get('/user', function(req, res, next) {
